@@ -11,14 +11,15 @@ msg_2 db "BINARIO: " ,10,13, "$"
 
 str1 DB 20 DUP('$')
 str2 DB 20 DUP('$')
-numero DW 255
+numero dw 10
 
 .code
 START:
    mov ax, @data
    mov ds, ax
     
-   lea si,str1                  ;inicializamos el array vacio de 20
+     
+   mov si, offset str1   
    mov ax,numero                ;guardamos el valor de numero en el registro ax
    mov bh,00
    mov bl,2                     ;necesitamos guardar 2 para realizar la division
@@ -26,15 +27,15 @@ START:
    loop_1:
     div bl
     add ah,'0'
-    mov byte ptr[si],ah
-    mov ah,00
-    inc si
+    mov byte ptr[si],ah         ;guardamos en el indice SI el valor de ah
+    mov ah,00                   ;reseteamos ah en 00
+    inc si                      ;pasamos al siguiente posicion de si
     inc bh
     cmp al,00
-    jne loop_1
+    jne loop_1                  ;JUMP si la condicion es verdadera
     
     mov cl,bh
-    lea si,str1
+    lea si,str1                 ;se carga la direcion pero no el contenido
     lea di,str2
     mov ch,00
     add si,cx

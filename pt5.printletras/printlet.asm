@@ -21,9 +21,9 @@ START:
    mov dx, offset msg_1
    int 21h
    
-   mov cx,8        ;inicializamos cx en 26
+   mov cx,26        ;inicializamos cx en 26
    mov ah,2
-   mov dl,104      ;seteamos a dl con 122 el cual es z
+   mov dl,122      ;seteamos a dl con 122 el cual es z
    
    
    mov al, 8
@@ -33,18 +33,7 @@ START:
     ;necesitamos mostrar el indice 
     ;convertirmos el numero a String
     ;https://bit.ly/2UZtn6A
-    mov bl,dl
-    mov ah, 02h
-    mov dl, al
-    add dl, "0"
-    int 21h
-
-    mov dl,bl
     
-    dec al
-   
-    
-   
     int 21h         ;mostramos el caracter
     dec dl          ;incrementamos DL con el siguiente caracter ASCII
     dec cx          ;decrementamos cx
